@@ -10,7 +10,7 @@ using namespace std;
 
 int main() {
     Solver s;
-    Board *b = s.solve(20, 20, Solver::NF);
+    Board *b = s.solve(30, 30, Solver::NF);
     ofstream fout("solution.txt");
     if (b) {
         fout << (*b) << endl;

@@ -7,8 +7,8 @@ using namespace std;
 Board* Solver::solve(int m,int n,RouterType type)
 {
     int scale = (m > n) ? m : n;
-    int l = scale / 4, r = scale / 2;
-    int mid = (l + r) / 2;
+    // int l = scale / 4, r = scale / 2;
+    // int mid = (l + r) / 2;
     Router* router = NULL;
     switch(type)
     {
@@ -22,7 +22,7 @@ Board* Solver::solve(int m,int n,RouterType type)
             router = new NFRouter();
             break;
     }
-
+    /*
     while(l < r)
     {
 
@@ -34,8 +34,14 @@ Board* Solver::solve(int m,int n,RouterType type)
         }
         else l = mid + 1;
         mid = (l + r) /2;
+    } */
+    int l = scale / 4;
+    router -> set(n, m , l);
+    while (!(router ->OK())) {
+        l++;
+        router -> set(n, m , l);
     }
-    cout <<"binary search complete!" <<endl;
+    // cout <<"binary search complete!" <<endl;
     cout <<"shortest is " <<l <<endl;
     router -> set(n, m , l);
     Board* b = router->route();
