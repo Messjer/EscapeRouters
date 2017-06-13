@@ -18,11 +18,16 @@ bool NFRouter::inBoard(int y, int x) {
 }
 
 std::pair<int, int> NFRouter::indexToxy(int index) {
-    index %= DN * DM;
+    if (index > DMN)
+        index -= DMN;
     return make_pair((index - 1) / DM + 1, 1 + (index - 1) % DM);
 };
 
-NFRouter::NFRouter(int n, int m, int k) : Router(n, m, k), flow(0), cost(0) {
+void NFRouter::set(int n, int m, int k) {
+    reset();
+    Router::set(n, m, k);
+    inds = 0; indt = (xyToIndex(DN, DM) << 1) + 1;
+    flow = 0; cost = 0;
     // add edges from source to terminals
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= m; j++)
@@ -45,19 +50,26 @@ NFRouter::NFRouter(int n, int m, int k) : Router(n, m, k), flow(0), cost(0) {
             }
 }
 
+void NFRouter::reset() {
+    for (int i = inds; i <= indt; i++) {
+        edges[i].clear();
+    }
+    Router::reset();
+}
+
 ostream& operator << (ostream &out, const NFRouter::Edge &e){
     out <<" (end : " <<e.end <<" cap : " <<e.cap <<" rev : " <<e.rev  <<" ) ";
     return out;
 }
 
 int NFRouter::lower(int i) {
-    assert(i >= 1 && i <= DN * DM);
-    return i + DN * DM;
+    assert(i >= 1 && i <= DMN);
+    return i + DMN;
 }
 
 int NFRouter::upper(int i) {
-    assert(i >= 1 + DN * DM && i <= (DN * DM << 1));
-    return i - DN * DM;
+    assert(i >= 1 + DMN && i <= (DMN << 1));
+    return i - DMN;
 }
 
 void NFRouter::print_status() {
@@ -130,6 +142,11 @@ void NFRouter::augment() {
 }
 
 Board * NFRouter::route(){
+    if (flow > 0) {
+        int m = M, n = N, k = K;
+        reset();
+        set(m, n, k);
+    }
     parent[inds] = -1;
     while (findPath()) {
         augment();
@@ -148,4 +165,35 @@ Board * NFRouter::route(){
         }
     // cout <<(*rst) <<endl;
     return rst;
+}
+
+bool NFRouter::findOnePath() {
+    for (int i = 0; i <= indt; i++) dist[i] = INF;
+    dist[inds] = 0;
+    queue<int> Q;
+    Q.push(inds);
+    while (!Q.empty()) {
+        int a = Q.front(); Q.pop();
+        for (int i = 0; i < edges[a].size(); i++) {
+            Edge &e = edges[a][i];
+            if (e.cap == 0) continue;
+            int b = e.end;
+            // if not visited
+            if (dist[b] == INF) {
+                dist[b] = 0;
+                parent[b] = a;
+                index[b] = i;
+                Q.push(b);
+            }
+        }
+    }
+    return dist[indt] == 0;
+}
+
+bool NFRouter::OK() {
+    parent[inds] = -1;
+    while (findOnePath()) {
+        augment();
+    }
+    return flow == N * M;
 }

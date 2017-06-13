@@ -20,7 +20,7 @@ public:
 private:
     const static int INF = 1000000000;
 
-    int inds = 0, indt = (xyToIndex(DN, DM) << 1) + 1;
+    int inds, indt;
 
     const static int MAXNODES = ((Board::MAX_BOARD_SIZE * Board::MAX_BOARD_SIZE) << 1) + 3;
 
@@ -59,15 +59,22 @@ private:
     // using Label Correcting Algorithm
     bool findPath();
 
+    // Plain floodfill(BFS) for pathfinding
+    bool findOnePath();
+
     // augment flow along the shortest path
     void augment();
 
     int flow, cost;
 
 public:
-    NFRouter(int n, int m, int k);
+    void set(int n, int m, int k);
+
+    void reset();
 
     Board *route();
+
+    bool OK();
 
     void print_status();
 };
