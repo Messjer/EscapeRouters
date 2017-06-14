@@ -37,7 +37,7 @@ Board* Solver::solve(int m,int n,RouterType type)
     } */
     int l = scale / 4;
     router -> set(n, m , l);
-    while (!(router ->OK())) {
+    while (!(router -> OK())) {
         l++;
         router -> set(n, m , l);
     }
@@ -45,6 +45,7 @@ Board* Solver::solve(int m,int n,RouterType type)
     cout <<"shortest is " <<l <<endl;
     router -> set(n, m , l);
     Board* b = router->route();
+    cout <<"cost is " <<router->cost <<endl;
     delete router;
     return b;
 }

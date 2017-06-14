@@ -10,6 +10,8 @@ protected:
 
     int DN = 1, DM = 1, DMN = 1;
 public:
+    int cost;
+
     /// set the problem parameters
     virtual void set(int n, int m, int k);
 
