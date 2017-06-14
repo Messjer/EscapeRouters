@@ -26,6 +26,9 @@ std::pair<int, int> NFRouter::indexToxy(int index) {
 void NFRouter::set(int n, int m, int k) {
     reset();
     Router::set(n, m, k);
+
+    edges.resize(DMN * 2 + 5);
+    dist.resize(DMN * 2 + 5); index.resize(DMN * 2 + 5); parent.resize(DMN * 2 + 5); inqueue.resize(DMN * 2 + 5);
     inds = 0; indt = (xyToIndex(DN, DM) << 1) + 1;
     flow = 0; cost = 0;
     // add edges from source to terminals
@@ -51,9 +54,8 @@ void NFRouter::set(int n, int m, int k) {
 }
 
 void NFRouter::reset() {
-    for (int i = inds; i <= indt; i++) {
-        edges[i].clear();
-    }
+    edges.clear();
+    dist.clear(); index.clear(); parent.clear(); inqueue.clear();
     Router::reset();
 }
 

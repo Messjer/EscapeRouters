@@ -51,7 +51,9 @@ private:
     int found;
 
 public:
-    AStarRouter(int n, int m, int k);
+    void set(int n, int m, int k);
+
+    void reset();
     void find_route(int x, int y);
 
     void cal_expect_cost(Point &p);

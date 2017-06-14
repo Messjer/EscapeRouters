@@ -2,7 +2,7 @@
 
 using namespace std;
 
-AStarRouter::AStarRouter(int n, int m, int k)
+void AStarRouter::set(int n, int m, int k)
 {
     Router::set(n, m, k);
     for (int i = 0; i < DN; i++)
@@ -19,6 +19,10 @@ AStarRouter::AStarRouter(int n, int m, int k)
             map[(i + 1) * (k + 1) - 1][(j + 1) * (k + 1) -1].status = CLOSED;
     cost = 0;
     found = 0;
+}
+
+void AStarRouter::reset() {
+    Router::reset();
 }
 
 Board* AStarRouter::route()

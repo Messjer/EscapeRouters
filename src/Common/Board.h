@@ -3,10 +3,11 @@
 #include <iostream>
 #include <cstring>
 #include <cassert>
+#include <vector>
 
 class Board {
 public:
-    static const int MAX_BOARD_SIZE = 300;
+    static const int MAX_BOARD_SIZE = 1000;
     /// N * M board, with K routing lines in between
     /// assume N <= M
     int N, M, K;
@@ -35,7 +36,7 @@ public:
 
     /// edge table, store directions of the edges starting from
     /// position (i, j)
-    int table[MAX_BOARD_SIZE][MAX_BOARD_SIZE];
+    std::vector< std::vector<int> > table;
 
     /// Construct a board with given dimension
     /// @param height of the board
@@ -44,7 +45,8 @@ public:
     /// @assume N <= M
     Board(int n, int m, int k) : N(n), M(m), K(k), DN(n * (k + 1) + k), DM(m * (k + 1) + k) {
         assert(DN <= MAX_BOARD_SIZE && DM <= MAX_BOARD_SIZE);
-        memset(table, 0, sizeof(table));
+        std::vector<int> v(DM + 1, 0);
+        table.resize(DN + 1, v);
     }
 
     friend std::ostream& operator<<(std::ostream &out, const Board &b);

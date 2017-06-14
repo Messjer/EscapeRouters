@@ -20,8 +20,8 @@ int main() {
         // router.print_status();
         delete b;
     }
-    Router* router = new AStarRouter(m, n, m / 2);
-    Board* b2 = router->route();
+
+    Board* b2 = s.solve(m, n, Solver::AS);
 
     ofstream fout2("solution2.txt");
     if (b2) {

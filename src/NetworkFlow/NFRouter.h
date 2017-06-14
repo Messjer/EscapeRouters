@@ -29,7 +29,7 @@ private:
     /// b = 1 means node at the lower layer
     /// the the last index is one of the five (possible) edges
     /// for more info read documentation
-    std::vector<Edge> edges[MAXNODES];
+    std::vector< std::vector<Edge> > edges;
 
     // find index from (x, y) coordinate
     int xyToIndex(int y, int x) {
@@ -50,10 +50,8 @@ private:
     int upper(int i);
 
     // arrays used in Label Correcting algorithm
-    int dist[MAXNODES];
-    int index[MAXNODES];
-    int parent[MAXNODES];
-    bool inqueue[MAXNODES];
+    std::vector<int> dist, index, parent;
+    std::vector<bool> inqueue;
 
     // find the next augmenting path with lowest cost
     // using Label Correcting Algorithm
