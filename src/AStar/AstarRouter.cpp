@@ -44,19 +44,19 @@ void AStarRouter::round_search(int k)
     if ((k >= N / 2) && (N % 2 == 0)) return;
     if ((k >= N / 2 + 1) && (N % 2 == 1)) return;
     for (int i = k; i < N - k - 1; ++i)
-        find_route((i + 1) * (K + 1) -1, (k + 1) * (K + 1) - 1);
+        find_route((i + 1) * (K + 1) -1, (k + 1) * (K + 1) - 1, Board::LEFT);
     for (int i = k; i < N - k - 1; ++i)
-        find_route((N - k) * (K + 1) - 1, (i + 1) * (K + 1) - 1);
+        find_route((N - k) * (K + 1) - 1, (i + 1) * (K + 1) - 1, Board::DOWN);
     for (int i = k + 1; i < N - k; i++)
-        find_route((i + 1) * (K + 1) - 1, (N - k) * (K + 1) - 1);
+        find_route((i + 1) * (K + 1) - 1, (N - k) * (K + 1) - 1, Board::RIGHT);
     for (int i = k + 1; i < N - k; i ++)
-        find_route((k + 1) * (K + 1) - 1, (i + 1)* (K + 1) - 1);
+        find_route((k + 1) * (K + 1) - 1, (i + 1)* (K + 1) - 1, Board::UP);
 
     round_search(k + 1);
     return;
 }
 
-void AStarRouter::find_route(int x, int y)
+void AStarRouter::find_route(int x, int y, int Dir)
 {
     openList.clear();
     closeList.clear();
@@ -84,13 +84,13 @@ void AStarRouter::find_route(int x, int y)
                 if (map[newx][newy]. expect_value > map[x][y].expect_value + 1)
                 {
                     map[newx][newy].cost = map[x][y].cost + 1;
-                    map[newx][newy].expect_value = map[newx][newy].cost + map[newx][newy].expect_cost[Min] * 2 + map[newx][newy].expect_cost[Max];
+                    map[newx][newy].expect_value = map[newx][newy].cost + map[newx][newy].G;
                     map[newx][newy].pre_direct = dir;
                 }
             }
             else{
                 map[newx][newy].cost = map[x][y].cost + 1;
-                cal_expect_cost(map[newx][newy]);
+                cal_expect_cost(map[newx][newy], Dir);
                 map[newx][newy].pre_direct = dir;
                 openList.push_back(map[newx][newy].index);
                 // cout << map[newx][newy].index << endl;
@@ -121,17 +121,20 @@ void AStarRouter::find_route(int x, int y)
     }
 }
 
-void AStarRouter::cal_expect_cost(Point &p)
+void AStarRouter::cal_expect_cost(Point &p, int Dir)
 {
     int x, y;
     getXY(p.index, x, y);
     p.expect_cost[Xs] = min(x, DN - x - 1);
     p.expect_cost[Ys]= min(y, DM - y - 1);
 
-    p.expect_cost[Min] = min(p.expect_cost[Xs], p.expect_cost[Ys]);
-    p.expect_cost[Max] = p.expect_cost[Xs] + p.expect_cost[Ys] - p.expect_cost[Min];
+  /*  p.expect_cost[Min] = min(p.expect_cost[Xs], p.expect_cost[Ys]);
+    p.expect_cost[Max] = p.expect_cost[Xs] + p.expect_cost[Ys] - p.expect_cost[Min];*/
 
-    p.expect_value = p.cost + p.expect_cost[Min] * 2 + p.expect_cost[Max];
+    if (Dir == Board::UP || Dir == Board::DOWN) p.G = p.expect_cost[Xs] * 2 + p.expect_cost[Ys];
+    else p.G = p.expect_cost[Xs] + p.expect_cost[Ys] * 2;
+
+    p.expect_value = p.cost + p.G;
 }
 
 void AStarRouter::set_direct(int x, int y, int pre_direct)
