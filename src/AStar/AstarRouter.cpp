@@ -18,7 +18,7 @@ void AStarRouter::set(int n, int m, int k)
         for (int j = 0; j < M; j++)
             map[(i + 1) * (k + 1) - 1][(j + 1) * (k + 1) -1].status = CLOSED;
     cost = 0;
-    found = 0;
+    flow = 0;
 }
 
 void AStarRouter::reset() {
@@ -101,10 +101,10 @@ void AStarRouter::find_route(int x, int y)
                     map[newx][newy].direct = map[newx][newy].pre_direct;
                     map[newx][newy].status = CLOSED;
                     set_direct(x, y, map[newx][newy].pre_direct);
-                    //    cost = map[newx][newy].cost  + cost + 1;
+                    cost = map[newx][newy].cost  + cost + 1;
                     //    cout << "gg" << endl;
                     find = true;
-                    found++;
+                    flow++;
                     break;
                 }
             }

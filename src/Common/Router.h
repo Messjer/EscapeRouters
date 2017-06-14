@@ -9,8 +9,11 @@ protected:
     int N, M, K;
 
     int DN = 1, DM = 1, DMN = 1;
+
+    int cost, flow;
 public:
-    int cost;
+    int get_cost() { return cost; }
+    int get_flow() { return flow; }
 
     /// set the problem parameters
     virtual void set(int n, int m, int k);

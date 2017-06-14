@@ -32,7 +32,9 @@ Board* Solver::solve(int m,int n,RouterType type)
     cout <<"shortest is " <<l <<endl;
     router -> set(n, m , l);
     Board* b = router->route();
-    cout <<"cost is " <<router->cost <<endl;
+    cout <<"Successfully routed " <<router->get_flow() <<endl;
+    cout <<"Cost is " <<router->get_cost() <<endl;
+    cout <<endl;
     delete router;
     return b;
 }

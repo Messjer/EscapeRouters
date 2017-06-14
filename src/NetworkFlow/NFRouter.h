@@ -62,8 +62,6 @@ private:
 
     // augment flow along the shortest path
     void augment();
-
-    int flow;
 public:
     void set(int n, int m, int k);
 

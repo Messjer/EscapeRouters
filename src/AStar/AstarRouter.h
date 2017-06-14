@@ -47,8 +47,6 @@ private:
     Point map[400][400];
     std::vector<int> openList;
     std::vector<int> closeList;
-    int cost;
-    int found;
 
 public:
     void set(int n, int m, int k);
@@ -75,17 +73,17 @@ public:
         return (x < DN && x >= 0 && y >= 0 && y < DM);
     }
 
-    int get_cost() {
-        return cost;
-    }
-
-    int get_found() {
-        return found;
-    }
-
     Board* route();
 
-    bool OK(){return true;}
+    bool OK(){
+        int m = M, n = N, k = K;
+        Board *b = route();
+        delete b;
+        int f = flow;
+        reset(); set(m, n, k);
+        std::cout <<f <<std::endl;
+        return f == M * N;
+    }
     void print_status(){}
 
 };
