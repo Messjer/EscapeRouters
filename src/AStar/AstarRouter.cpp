@@ -1,10 +1,12 @@
-#include "AStarRouter.h"
+#include "AstarRouter.h"
 
 using namespace std;
 
 void AStarRouter::set(int n, int m, int k)
 {
     Router::set(n, m, k);
+    vector<Point> vec(DN, Point());
+    map.assign(DM, vec);
     for (int i = 0; i < DN; i++)
         for (int j = 0; j < DM; j++)
         {
@@ -79,10 +81,10 @@ void AStarRouter::find_route(int x, int y)
             if ( it != closeList.end() ) continue;
             if (std::find(openList.begin(), openList.end(), getIndex(newx, newy)) != openList.end())
             {
-                if (map[newx][newy]. cost < map[x][y].cost + 1)
+                if (map[newx][newy]. expect_value > map[x][y].expect_value + 1)
                 {
                     map[newx][newy].cost = map[x][y].cost + 1;
-                    map[newx][newy].expect_value = map[newx][newy].cost + map[newx][newy].expect_cost[Min];
+                    map[newx][newy].expect_value = map[newx][newy].cost + map[newx][newy].expect_cost[Min] * 2 + map[newx][newy].expect_cost[Max];
                     map[newx][newy].pre_direct = dir;
                 }
             }
@@ -129,7 +131,7 @@ void AStarRouter::cal_expect_cost(Point &p)
     p.expect_cost[Min] = min(p.expect_cost[Xs], p.expect_cost[Ys]);
     p.expect_cost[Max] = p.expect_cost[Xs] + p.expect_cost[Ys] - p.expect_cost[Min];
 
-    p.expect_value = p.cost + p.expect_cost[Min];
+    p.expect_value = p.cost + p.expect_cost[Min] * 2 + p.expect_cost[Max];
 }
 
 void AStarRouter::set_direct(int x, int y, int pre_direct)

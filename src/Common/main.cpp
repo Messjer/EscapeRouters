@@ -3,7 +3,7 @@
 //
 #include "Solver.h"
 #include "../NetworkFlow/NFRouter.h"
-#include "../AStar/AStarRouter.h"
+#include "../AStar/AstarRouter.h"
 #include <iostream>
 #include <fstream>
 

@@ -38,13 +38,15 @@ public:
         int expect_value;
         int index;
 
+        Point() = default;
+
         bool operator < (const Point &b) const {
             return expect_value < b.expect_value;
         }
     };
 
 private:
-    Point map[400][400];
+    std::vector<std::vector<Point>> map;
     std::vector<int> openList;
     std::vector<int> closeList;
 
