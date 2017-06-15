@@ -33,10 +33,11 @@ public:
         int status;
         int pre_direct;
         int direct;
-        int expect_cost[4];
+        int expect_cost[3];
         int cost;
         int expect_value;
         int index;
+        int G;
 
         Point() = default;
 
@@ -54,9 +55,9 @@ public:
     void set(int n, int m, int k);
 
     void reset();
-    void find_route(int x, int y);
+    void find_route(int x, int y, int Dir);
 
-    void cal_expect_cost(Point &p);
+    void cal_expect_cost(Point &p, int Dir);
     void set_direct(int x, int y, int pre_direct);
     void find_minPoint(int &minIndex);
     void clean(int index);

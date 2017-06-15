@@ -32,6 +32,7 @@ public:
     virtual bool OK();
 
     virtual void print_status() = 0;
+    virtual ~Router() {}
 };
 
 #endif //SRC_ROUTER_H

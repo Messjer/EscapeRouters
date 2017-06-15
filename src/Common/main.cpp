@@ -27,7 +27,6 @@ int main() {
         fout2 << (*b2) << endl;
         delete b2;
     }
-
     fout2.close();
     */
 
@@ -38,7 +37,5 @@ int main() {
         fout3 << (*b3) << endl;
         delete b3;
     }
-
-
     return 0;
 }
