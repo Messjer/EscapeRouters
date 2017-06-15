@@ -7,7 +7,7 @@ class Solver
 {
 public:
     enum RouterType {
-        NF, AS
+        NF, AS, DC
     };
     Board* solve(int, int, RouterType);
 };

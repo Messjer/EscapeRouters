@@ -11,6 +11,8 @@ protected:
     int DN = 1, DM = 1, DMN = 1;
 
     int cost, flow;
+
+    virtual bool fulfill() { return flow == N * M; }
 public:
     int get_cost() { return cost; }
     int get_flow() { return flow; }
@@ -27,7 +29,7 @@ public:
 
     /// this function check whether it is possible to route
     /// @return if the routing succeed
-    virtual bool OK() = 0;
+    virtual bool OK();
 
     virtual void print_status() = 0;
     virtual ~Router() {}

@@ -1,6 +1,7 @@
 #include "Solver.h"
-#include "../NetworkFlow/NFRouter.h"
+#include "../NetWorkFlow/NFRouter.h"
 #include "../AStar/AstarRouter.h"
+#include "../DivideConquer/DCRouter.h"
 #include <iostream>
 
 using namespace std;
@@ -16,6 +17,9 @@ Board* Solver::solve(int m,int n,RouterType type)
             break;
         case AS:
             router = new AStarRouter();
+            break;
+        case DC:
+            router = new DCRouter();
             break;
         default:
             router = new NFRouter();

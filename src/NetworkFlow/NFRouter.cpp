@@ -154,7 +154,7 @@ Board * NFRouter::route(){
         augment();
     }
 
-    if (flow != N * M) return NULL;
+    if (!fulfill()) return NULL;
     Board *rst = new Board(N, M, K);
     for (int i = 1; i <= DN; i++)
         for (int j = 1; j <= DM; j++) {
@@ -197,5 +197,5 @@ bool NFRouter::OK() {
     while (findOnePath()) {
         augment();
     }
-    return flow == N * M;
+    return fulfill();
 }

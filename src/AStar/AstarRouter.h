@@ -78,15 +78,6 @@ public:
 
     Board* route();
 
-    bool OK(){
-        int m = M, n = N, k = K;
-        Board *b = route();
-        delete b;
-        int f = flow;
-        reset(); set(m, n, k);
-        std::cout <<f <<std::endl;
-        return f == M * N;
-    }
     void print_status(){}
 
 };
