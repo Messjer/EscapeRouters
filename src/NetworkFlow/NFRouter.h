@@ -17,7 +17,7 @@ public:
 
         friend std::ostream& operator << (std::ostream &out, const Edge &e);
     };
-private:
+protected:
     const static int INF = 1000000000;
 
     int inds, indt;
@@ -63,13 +63,13 @@ private:
     // augment flow along the shortest path
     void augment();
 public:
-    void set(int n, int m, int k);
+    virtual void set(int n, int m, int k);
 
     void reset();
 
     Board *route();
 
-    bool OK();
+    virtual bool OK();
 
     void print_status();
 };
