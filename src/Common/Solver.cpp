@@ -1,6 +1,6 @@
 #include "Solver.h"
-#include "../NetWorkFlow/NFRouter.h"
-#include "../Astar/AstarRouter.h"
+#include "../NetworkFlow/NFRouter.h"
+#include "../AStar/AstarRouter.h"
 #include <iostream>
 
 using namespace std;

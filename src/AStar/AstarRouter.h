@@ -33,7 +33,7 @@ public:
         int status;
         int pre_direct;
         int direct;
-        int expect_cost[2];
+        int expect_cost[3];
         int cost;
         int expect_value;
         int index;

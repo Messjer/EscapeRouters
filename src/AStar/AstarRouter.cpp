@@ -42,7 +42,11 @@ Board* AStarRouter::route()
 void AStarRouter::round_search(int k)
 {
     if ((k >= N / 2) && (N % 2 == 0)) return;
-    if ((k >= N / 2 + 1) && (N % 2 == 1)) return;
+    if ((k >= N / 2) && (N % 2 == 1))
+    {
+      find_route((k + 1) * (K + 1) - 1, (k + 1) * (K + 1) - 1, Board::UP);
+      return;
+    }
     for (int i = k; i < N - k - 1; ++i)
         find_route((i + 1) * (K + 1) -1, (k + 1) * (K + 1) - 1, Board::LEFT);
     for (int i = k; i < N - k - 1; ++i)
@@ -128,8 +132,8 @@ void AStarRouter::cal_expect_cost(Point &p, int Dir)
     p.expect_cost[Xs] = min(x, DN - x - 1);
     p.expect_cost[Ys]= min(y, DM - y - 1);
 
-  /*  p.expect_cost[Min] = min(p.expect_cost[Xs], p.expect_cost[Ys]);
-    p.expect_cost[Max] = p.expect_cost[Xs] + p.expect_cost[Ys] - p.expect_cost[Min];*/
+    p.expect_cost[Min] = min(p.expect_cost[Xs], p.expect_cost[Ys]);
+  /*  p.expect_cost[Max] = p.expect_cost[Xs] + p.expect_cost[Ys] - p.expect_cost[Min];*/
 
     if (Dir == Board::UP || Dir == Board::DOWN) p.G = p.expect_cost[Xs] * 2 + p.expect_cost[Ys];
     else p.G = p.expect_cost[Xs] + p.expect_cost[Ys] * 2;
@@ -173,11 +177,6 @@ void AStarRouter::find_minPoint(int &minIndex)
         {
             if (p.expect_cost[Min] > map[x][y].expect_cost[Min])
                 p = map[x][y], it = i;
-            else if (p.expect_cost[Min] == map[x][y].expect_cost[Min])
-            {
-                if (p.expect_cost[Max] > map[x][y].expect_cost[Max])
-                    p = map[x][y], it = i;
-            }
         }
     }
     minIndex = p.index;
