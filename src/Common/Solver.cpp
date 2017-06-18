@@ -1,5 +1,5 @@
 #include "Solver.h"
-#include "../NetWorkFlow/NFRouter.h"
+#include "../NetworkFlow/NFRouter.h"
 #include "../Rule/RuleRouter.h"
 #include "../DivideConquer/DCRouter.h"
 #include <iostream>

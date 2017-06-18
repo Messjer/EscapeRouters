@@ -11,23 +11,6 @@ Board* DCRouter::route()
     Board* qb = router.route();
     if(!qb)return NULL;
 
-   /* for(int i = 1;i <= qb->DN; i++)
-            if(qb->table[i][qb->DM])
-			{
-				int judege = 0;
-				for(int dir = Board::UP; dir <= Board::LEFT; dir++)
-				{
-					int ni = i + Board::dy(dir), nj = j + Board::dx(dir);
-					if (inBoard(ni, nj))
-					
-					if(qb->[ni][nj])judge++;
-				}
-				if(judge)qb->table[i][j] = 0;
-			}
-    for(int i = qb->DN-K+1; i <= qb->DN; i++)
-        for(int j = 1;j <= qb->DM; j++)
-            if(qb->table[i][j])qb->table[i][j] = 0;
-	*/
 	for(int i = 1; i <= qb->DN; i++)
 	{
 		if(!router.tlink(i, 1 ))     qb->table[i][1] = 0;
@@ -114,54 +97,6 @@ Board* DCRouter::route()
 		}
 	}
     delete qb;
-    // fout.close();
-    /*std::queue<int> q;
-    int cindex = xyToIndex(DN/2+1,DM/2+1);
-    q.push(cindex);
-    bool flag = true;
-    int lastdir = 0;
-    while(!q.empty())
-    {
-        int j = 1 + (q.front() - 1) % DM, i = q.front() / DM + 1;
-        for (int dir = Board::UP; dir <= Board::LEFT; dir++)
-        {
-            int ni = i + Board::dy(dir), nj = j + Board::dx(dir);
-            if(!inBoard(ni,nj))
-            {
-                lastdir = dir;
-                flag = false;
-                break;
-            }
-            if(!b->table[ni][nj])
-            {
-                b->table[ni][nj] = -dir;
-                q.push(xyToIndex(ni,nj));
-            }
-        }
-        if(flag)
-            q.pop();
-        else
-            break;
-    }
-
-    int nowindex = q.front();
-    int j = 1 + (nowindex - 1) % DM, i = nowindex / DM + 1;
-    while(nowindex != cindex)
-    {
-        int dir = -b->table[i][j];
-        b->table[i][j] = lastdir;
-        int ni = i - Board::dy(dir), nj = j - Board::dx(dir);
-        nowindex = xyToIndex(ni,nj);
-        lastdir = dir;
-        i = ni;j = nj;
-        cost++;
-    }
-    cost++;
-    b->table[i][j] = lastdir;
-    flow++;
-    for(int i = 1; i <= DN; i++)
-        for(int j = 1; j <= DM; j++)
-            if(b->table[i][j] < 0)b->table[i][j] = 0;*/
     return b;
 }
 

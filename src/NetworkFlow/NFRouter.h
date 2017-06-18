@@ -22,7 +22,7 @@ protected:
 
     int inds, indt;
 
-    const static int MAXNODES = ((Board::MAX_BOARD_SIZE * Board::MAX_BOARD_SIZE) << 1) + 3;
+    // const static int MAXNODES = ((Board::MAX_BOARD_SIZE * Board::MAX_BOARD_SIZE) << 1) + 3;
 
     /// adjacency lists for the edges
     /// node (i, j, b), b = 0 means node at the upper layer
