@@ -40,8 +40,8 @@ Board* DCRouter::route()
 	}		
     
 	
-	std::ofstream fout("solutionQ.txt");
-    fout << (*qb) << std::endl;
+	// std::ofstream fout("solutionQ.txt");
+    // fout << (*qb) << std::endl;
     
 	Board* b = new Board(N, M, K);
 	int is = 1, ie, js, je = qb->DM, dy;
@@ -114,7 +114,7 @@ Board* DCRouter::route()
 		}
 	}
     delete qb;
-    fout.close();
+    // fout.close();
     /*std::queue<int> q;
     int cindex = xyToIndex(DN/2+1,DM/2+1);
     q.push(cindex);

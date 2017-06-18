@@ -9,10 +9,15 @@
 using namespace std;
 
 int main() {
-    int m, n;
-    cin >>m >>n;
-    Timer timer(m, n);
-	timer.timedTest(Solver::NF, "solution.txt");
-	timer.timedTest(Solver::DC, "solution3.txt");
+    // int m, n;
+    // cin >>m >>n;
+    for (int m = 5; m <= 70; m += 5) {
+        Timer timer(m, m);
+        if (m <= 60)
+            timer.timedTest(Solver::NF);
+        timer.timedTest(Solver::DC);
+        if (m >= 25)
+            break;
+    }
     return 0;
 }

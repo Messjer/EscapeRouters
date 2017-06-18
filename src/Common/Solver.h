@@ -10,6 +10,8 @@ public:
         NF, AS, DC
     };
     Board* solve(int, int, RouterType);
+    int flow;
+    int cost;
 };
 
 #endif //SRc_SOLVER_H
