@@ -1,6 +1,6 @@
 #include "Solver.h"
-#include "../NetworkFlow/NFRouter.h"
-#include "../AStar/AstarRouter.h"
+#include "../NetWorkFlow/NFRouter.h"
+#include "../Rule/RuleRouter.h"
 #include "../DivideConquer/DCRouter.h"
 #include <iostream>
 
@@ -15,8 +15,8 @@ Board* Solver::solve(int m,int n,RouterType type)
         case NF:
             router = new NFRouter();
             break;
-        case AS:
-            router = new AStarRouter();
+        case RU:
+            router = new RuleRouter();
             break;
         case DC:
             router = new DCRouter();

@@ -85,8 +85,7 @@ void RuleRouter::reset()
   Router::reset();
 }
 
-bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3)
-{
+bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3) {
   if (m_map[x][y].status == VISITED) return false;
   int X = (x + 1) / (K + 1) - 1;
   int Y = (y + 1) / (K + 1) - 1;
@@ -96,9 +95,8 @@ bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3)
   int newx = x;
   int newy = y;
 //  cout << "search " << endl;
-  while (find)
-  {
-  //  cout << "index: " << newx << " " << newy << endl;
+  while (find) {
+    //  cout << "index: " << newx << " " << newy << endl;
     find = false;
     //Dir1
     int nextx = newx + dx[Dir1];
@@ -112,8 +110,7 @@ bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3)
       break;
     }
 
-    if (m_map[nextx][nexty].status == NOVISITED)
-    {
+    if (m_map[nextx][nexty].status == NOVISITED) {
       m_map[nextx][nexty].pre_direct = Dir1;
       newx = nextx, newy = nexty;
       find = true;
@@ -121,29 +118,25 @@ bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3)
     }
 
     if (m_map[nextx][nexty].status == NOFOUND)
-       if (!search_point(nextx, nexty, Dir1, Dir2, Dir3))
-       {
-         find = false;
-         break;
-       }
+      if (!search_point(nextx, nexty, Dir1, Dir2, Dir3)) {
+        find = false;
+        break;
+      }
 
     nextx = newx + dx[Dir2];
     nexty = newy + dy[Dir2];
 
-    if (m_map[nextx][nexty].status == NOVISITED)
-    {
+    if (m_map[nextx][nexty].status == NOVISITED) {
       m_map[nextx][nexty].pre_direct = Dir2;
       newx = nextx, newy = nexty;
       find = true;
       continue;
     }
 
-    if (m_map[nextx][nexty].status == NOFOUND)
-    {
+    if (m_map[nextx][nexty].status == NOFOUND) {
       int prex = newx;
       int prey = newy;
-      while (m_map[prex][prey].pre_direct == Dir2)
-      {
+      while (m_map[prex][prey].pre_direct == Dir2) {
         m_map[prex][prey].status = VISITED;
         prex = prex - dx[m_map[prex][prey].pre_direct];
         prey = prey - dy[m_map[prex][prey].pre_direct];
@@ -158,11 +151,9 @@ bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3)
     }
   }
 
-  if (find)
-  {
+  if (find) {
     m_map[newx][newy].direct = m_map[newx][newy].pre_direct;
-    while (m_map[newx][newy].status != NOFOUND)
-    {
+    while (m_map[newx][newy].status != NOFOUND) {
       //cout << "index: " << newx << " " << newy << " " << m_map[newx][newy].pre_direct << endl;
       m_map[newx][newy].status = VISITED;
       int nextx = newx - dx[m_map[newx][newy].pre_direct];
@@ -170,13 +161,12 @@ bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3)
       m_map[nextx][nexty].direct = m_map[newx][newy].pre_direct;
       newx = nextx;
       newy = nexty;
-      cost ++;
+      cost++;
     }
     m_map[newx][newy].status = VISITED;
     flow++;
     cost++;
-  }
-  else
+  } else
     return false;
   return find;
 }
