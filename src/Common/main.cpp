@@ -16,8 +16,6 @@ int main() {
         if (m <= 60)
             timer.timedTest(Solver::NF);
         timer.timedTest(Solver::DC);
-        if (m >= 25)
-            break;
     }
     return 0;
 }
