@@ -13,6 +13,10 @@ void Timer::timedTest(Solver::RouterType type)
     if (type == Solver::NF) rt = "NF";
     else if (type == Solver::DC) rt = "DC";
     else if (type == Solver::AS) rt = "AS";
+    if (type != Solver::NF && m != n) {
+        cout <<"DC & AS Router can only solve squares" <<endl;
+        return;
+    }
 
     cout <<"Timing on " <<m <<" by " <<n <<" type is " <<rt <<endl <<endl;
 
