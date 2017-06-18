@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //
 // Created by Hong Man Hou on 7/6/2017.
 //
@@ -42,4 +41,3 @@ int main() {
 
     return 0;
 }
-=

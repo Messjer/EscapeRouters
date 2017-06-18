@@ -1,0 +1,148 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/AStar/AstarRouter.cpp
+AstarRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/AStar/AstarRouter.h
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/AStar/AstarRouter.h
+../Common/Router.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Router.h
+vector
+-
+algorithm
+-
+list
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Board.cpp
+Board.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Board.h
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Board.h
+iostream
+-
+cstring
+-
+cassert
+-
+vector
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Router.cpp
+Router.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Router.h
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Router.h
+Board.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Board.h
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Solver.cpp
+Solver.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Solver.h
+../NetworkFlow/NFRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/NetworkFlow/NFRouter.h
+../AStar/AstarRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/AStar/AstarRouter.h
+../DivideConquer/DCRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/DivideConquer/DCRouter.h
+iostream
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Solver.h
+Router.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Router.h
+Board.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Board.h
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Timer.cpp
+Timer.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Timer.h
+ctime
+-
+cstdio
+-
+fstream
+-
+sstream
+-
+iostream
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Timer.h
+Solver.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Solver.h
+Board.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Board.h
+string
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/main.cpp
+Solver.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Solver.h
+../NetworkFlow/NFRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/NetworkFlow/NFRouter.h
+../AStar/AstarRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/AStar/AstarRouter.h
+../Rule/RuleRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Rule/RuleRouter.h
+iostream
+-
+fstream
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/DivideConquer/DCRouter.cpp
+DCRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/DivideConquer/DCRouter.h
+Quarter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/DivideConquer/Quarter.h
+queue
+-
+fstream
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/DivideConquer/DCRouter.h
+../Common/Router.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Router.h
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/DivideConquer/Quarter.cpp
+Quarter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/DivideConquer/Quarter.h
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/DivideConquer/Quarter.h
+../NetworkFlow/NFRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/NetworkFlow/NFRouter.h
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/NetworkFlow/NFRouter.cpp
+NFRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/NetworkFlow/NFRouter.h
+iostream
+-
+queue
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/NetworkFlow/NFRouter.h
+../Common/Router.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Router.h
+cassert
+-
+vector
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Rule/RuleRouter.cpp
+RuleRouter.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Rule/RuleRouter.h
+cmath
+-
+
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Rule/RuleRouter.h
+../Common/Router.h
+/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/Common/Router.h
+vector
+-
+
