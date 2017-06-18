@@ -8,8 +8,8 @@
 
 using namespace std;
 
-void NFRouter::addEdge(int ia, int ib, int cost) {
-    edges[ia].push_back(Edge(ib, cost, 1, edges[ib].size()));
+void NFRouter::addEdge(int ia, int ib, int cost, int cap /* = 1*/) {
+    edges[ia].push_back(Edge(ib, cost, cap, edges[ib].size()));
     edges[ib].push_back(Edge(ia, -cost, 0, edges[ia].size() - 1));
 }
 

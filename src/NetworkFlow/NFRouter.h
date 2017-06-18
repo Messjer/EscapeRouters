@@ -40,7 +40,7 @@ protected:
     std::pair<int, int> indexToxy(int index);
 
     // add an edge along with its reverse into the graph
-    void addEdge(int ia, int ib, int cost);
+    void addEdge(int ia, int ib, int cost, int cap = 1);
 
     // judge if a point is in the board
     bool inBoard(int y, int x);
