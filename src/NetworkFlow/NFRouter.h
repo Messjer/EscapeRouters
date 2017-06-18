@@ -17,7 +17,7 @@ public:
 
         friend std::ostream& operator << (std::ostream &out, const Edge &e);
     };
-private:
+protected:
     const static int INF = 1000000000;
 
     int inds, indt;
@@ -40,7 +40,7 @@ private:
     std::pair<int, int> indexToxy(int index);
 
     // add an edge along with its reverse into the graph
-    void addEdge(int ia, int ib, int cost);
+    void addEdge(int ia, int ib, int cost, int cap = 1);
 
     // judge if a point is in the board
     bool inBoard(int y, int x);
@@ -63,13 +63,13 @@ private:
     // augment flow along the shortest path
     void augment();
 public:
-    void set(int n, int m, int k);
+    virtual void set(int n, int m, int k);
 
     void reset();
 
     Board *route();
 
-    bool OK();
+    virtual bool OK();
 
     void print_status();
 };

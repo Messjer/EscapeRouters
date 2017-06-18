@@ -8,3 +8,13 @@ void Router::set(int n, int m, int k) {
 void Router::reset() {
     N = M = K = DN = DM = DMN = 0;
 }
+
+bool Router::OK() {
+    int m = M, n = N, k = K;
+    Board *b = route();
+    delete b;
+    int f = flow;
+    reset(); set(m, n, k);
+    std::cout <<f <<std::endl;
+    return fulfill();
+}

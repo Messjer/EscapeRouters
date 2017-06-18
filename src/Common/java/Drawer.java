@@ -11,17 +11,18 @@ public class Drawer {
     // N * M board, with K grid lines in between
     // assert N < M
     static int N, M, K, DN, DM;
+    static boolean successRead = false;
     final static int UP = 1, RIGHT = 2, DOWN = 3, LEFT = 4;
     final static int dx[] = {0, 0, 1, 0, -1}, dy[] = {0, -1, 0, 1, 0};
 
     // table for the edges
     static int table[][];
 
-    public static void readConfig() {
-        readConfig("solution.txt");
+    public static boolean readConfig() {
+        return readConfig("solution.txt");
     }
 
-    public static void readConfig(String fName) {
+    public static boolean readConfig(String fName) {
         try {
             Scanner scanner = new Scanner(new FileInputStream(fName));
             N = scanner.nextInt(); M = scanner.nextInt(); K = scanner.nextInt();
@@ -31,13 +32,13 @@ public class Drawer {
             for (int i = 0; i < DN; i++)
                 for (int j = 0; j < DM; j++)
                     table[i][j] = scanner.nextInt();
+            return true;
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-            System.err.println("Make sure " + fName + " is in the same directory.");
-            System.exit(0x12313);
+            return false;
         } catch (NoSuchElementException ne){
             System.err.println("Data in " + fName + " is not in valid format.");
             System.exit(0x132);
+            return false;
         }
     }
 
@@ -127,6 +128,7 @@ public class Drawer {
         }
 
         public void paint(Graphics g) {
+            if (!successRead) return;
             int scale = min(getWidth(), (getHeight() - 30) * (M + 1) / (N + 1)) * myScale;
 
             Graphics2D gd = (Graphics2D) g;
@@ -189,7 +191,7 @@ public class Drawer {
         readBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                readConfig(inputField.getText());
+                successRead = readConfig(inputField.getText());
                 canvas.repaint();
             }
         });
@@ -216,7 +218,7 @@ public class Drawer {
     }
 
     public static void main(String[] a) {
-        readConfig();
+        successRead = readConfig();
         draw();
     }
 }

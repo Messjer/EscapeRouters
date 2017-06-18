@@ -78,6 +78,7 @@ public:
 
     Board* route();
 
+<<<<<<< HEAD
     bool OK(){
         int m = M, n = N, k = K;
         Board *b = route();
@@ -87,6 +88,8 @@ public:
         std::cout << f <<std::endl;
         return f == M * N;
     }
+=======
+>>>>>>> 4d44df13dbc0f2dd7da89c5f9b7415ec9c8c2252
     void print_status(){}
 
 };
