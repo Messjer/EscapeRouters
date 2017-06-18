@@ -1,3 +1,0 @@
-/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/build/CMakeFiles/rebuild_cache.dir
-/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/build/CMakeFiles/edit_cache.dir
-/Users/sunzhenbo/programming/GradeTwo/Team Work/EscapeRouters/src/build/CMakeFiles/src.dir
