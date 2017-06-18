@@ -13,12 +13,15 @@ Board* Solver::solve(int m,int n,RouterType type)
     switch(type)
     {
         case NF:
+            cout <<"type is NF" <<endl;
             router = new NFRouter();
             break;
         case AS:
+            cout <<"type is AS" <<endl;
             router = new AStarRouter();
             break;
         case DC:
+            cout <<"type is DC" <<endl;
             router = new DCRouter();
             break;
         default:
@@ -27,6 +30,7 @@ Board* Solver::solve(int m,int n,RouterType type)
     }
     int l = scale / 4;
     router -> set(n, m , l);
+    cout <<"Start testing ... " <<endl;
     while (!(router -> OK())) {
         cout <<l <<" cannot do " <<endl;
         l++;
