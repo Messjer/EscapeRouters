@@ -4,13 +4,14 @@
 #include "Solver.h"
 #include "../NetworkFlow/NFRouter.h"
 #include "../AStar/AstarRouter.h"
+#include "../Rule/RuleRouter.h"
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
 int main() {
-    int m, n;
+    /*int m, n;
     cin >>m >>n;
     Solver s;
     Board *b = s.solve(m, n, Solver::NF);
@@ -28,7 +29,15 @@ int main() {
         fout2 << (*b2) << endl;
         // router.print_status();
         delete b2;
-    }
-    
+    }*/
+
+    RuleRouter router;
+    router.set(19, 19, 5);
+    Board* b = router.route();
+    ofstream fout("../Common/solution5.txt");
+    fout << (*b) << endl;
+    cout << "flow: " << router.get_flow() << endl;
+    cout << "cost: " << router.get_cost() << endl;
+
     return 0;
 }

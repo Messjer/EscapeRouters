@@ -5,8 +5,8 @@ using namespace std;
 void AStarRouter::set(int n, int m, int k)
 {
     Router::set(n, m, k);
-    vector<Point> vec(DN, Point());
-    map.assign(DM, vec);
+    vector<Point> vec(DM, Point());
+    map.assign(DN, vec);
     for (int i = 0; i < DN; i++)
         for (int j = 0; j < DM; j++)
         {

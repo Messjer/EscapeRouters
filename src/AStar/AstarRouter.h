@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <list>
 
-static const int dx[5] = {0, -1, 0, 1, };
+static const int dx[5] = {0, -1, 0, 1, 0};
 
 static const int dy[5] = {0, 0, 1, 0, -1};
 
@@ -84,7 +84,7 @@ public:
         delete b;
         int f = flow;
         reset(); set(m, n, k);
-        std::cout <<f <<std::endl;
+        std::cout << f <<std::endl;
         return f == M * N;
     }
     void print_status(){}
