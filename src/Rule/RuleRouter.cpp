@@ -70,17 +70,6 @@ int RuleRouter::End(int i)
 
 Board* RuleRouter::route()
 {
-<<<<<<< HEAD
-  if (N % 2 == 0)
-  {
-    if (!even_search())
-      cout << "can't solve" << endl;
-  }
-  else
-  {
-    if (!odd_search())
-      cout << "can't solve" << endl;
-=======
   if(N % 2)
   {
     if(!odd_search())
@@ -96,7 +85,6 @@ Board* RuleRouter::route()
       cout << "can't solve" << endl;
       return NULL;
     }
->>>>>>> 5e1f3cc1fd1d93155f58c05a0c4fb9d417d4560e
   }
 
 
