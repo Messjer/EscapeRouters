@@ -22,7 +22,16 @@ void RuleRouter::set(int n, int m, int k)
 
 Board* RuleRouter::route()
 {
-  if (!odd_search()) cout << "can't solve" << endl;
+  if (N % 2 == 0)
+  {
+    if (!even_search())
+      cout << "can't solve" << endl;
+  }
+  else
+  {
+    if (!odd_search())
+      cout << "can't solve" << endl;
+  }
 
   Board* rst = new Board(N, M, K);
   for (int i = 1; i <= DN; ++i)
@@ -64,6 +73,7 @@ bool RuleRouter::odd_search()
     search_point((i + 1) * (K + 1) - 1, (middle_n + 1) * (K + 1) - 1, Board::UP, Board::LEFT, Board::DOWN);
   for (int i = K - 1; i < 2 * K - 1; i++)
     search_point((i + 1) * (K + 1) - 1, (middle_n + 1) * (K + 1) - 1, Board::UP, Board::RIGHT, Board::DOWN);
+
   for (int i = 2 * K - 1; i <= middle_n; i++)
     search_point((i + 1) * (K + 1) - 1, (middle_n + 1) * (K + 1) - 1, Board::UP, Board::LEFT, Board::DOWN);
 
@@ -90,7 +100,7 @@ bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3) {
   int X = (x + 1) / (K + 1) - 1;
   int Y = (y + 1) / (K + 1) - 1;
   if (Dir2 == Board::LEFT && X > Y) return false;
-  if (Dir2 == Board::RIGHT && ((X + Y) >= (N - 1))) return false;
+  if (Dir2 == Board::RIGHT && ((X + Y) >= (N - 1)) && (X != N / 2)) return false;
   bool find = true;
   int newx = x;
   int newy = y;

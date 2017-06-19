@@ -48,4 +48,5 @@ void Timer::timedTest(Solver::RouterType type)
     std::ofstream statout(ss2.str());
     statout <<"M, N, Gap Size, Flow, Length, Time(s)" <<endl;
     statout <<m <<',' <<n <<',' <<b -> K <<',' <<s.flow <<',' <<s.cost <<',' <<elapsed <<endl;
+	statout.close();
 }
