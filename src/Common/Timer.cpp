@@ -34,12 +34,16 @@ void Timer::timedTest(Solver::RouterType type)
     ss <<dir <<"solution" <<m <<"by" <<n <<".txt";
 
     std::ofstream fout(ss.str());
+    int k = 0;
     if(b)
     {
+        k = b -> K;
         fout << (*b) << std::endl;
         delete b;
-    } else
-        cout <<"Something Wrong!!!" <<endl;
+    } else {
+        cerr << "Something Wrong!!!" << endl;
+        exit(0x134213);
+    }
     fout.close();
 
     stringstream ss2;
@@ -47,6 +51,5 @@ void Timer::timedTest(Solver::RouterType type)
     ss2 <<"stats" <<m <<"by" <<n <<".csv";
     std::ofstream statout(ss2.str());
     statout <<"M, N, Gap Size, Flow, Length, Time(s)" <<endl;
-    statout <<m <<',' <<n <<',' <<b -> K <<',' <<s.flow <<',' <<s.cost <<',' <<elapsed <<endl;
-	statout.close();
+    statout <<m <<',' <<n <<',' <<k <<',' <<s.flow <<',' <<s.cost <<',' <<elapsed <<endl;
 }

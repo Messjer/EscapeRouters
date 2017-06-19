@@ -7,7 +7,7 @@
 
 class Board {
 public:
-    static const int MAX_BOARD_SIZE = 1000;
+    // static const int MAX_BOARD_SIZE = 1000;
     /// N * M board, with K routing lines in between
     /// assume N <= M
     int N, M, K;
@@ -44,7 +44,7 @@ public:
     /// @param routing line in between
     /// @assume N <= M
     Board(int n, int m, int k) : N(n), M(m), K(k), DN(n * (k + 1) + k), DM(m * (k + 1) + k) {
-        assert(DN <= MAX_BOARD_SIZE && DM <= MAX_BOARD_SIZE);
+        // assert(DN <= MAX_BOARD_SIZE && DM <= MAX_BOARD_SIZE);
         std::vector<int> v(DM + 1, 0);
         table.resize(DN + 1, v);
     }
