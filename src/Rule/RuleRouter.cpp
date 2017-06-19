@@ -1,6 +1,6 @@
 #include "RuleRouter.h"
 #include <cmath>
-
+#include <queue>
 using namespace std;
 
 const int RuleRouter::dx[5] = {0, -1, 0, 1, 0};
@@ -20,18 +20,109 @@ void RuleRouter::set(int n, int m, int k)
   flow = 0;
 }
 
-Board* RuleRouter::route()
+bool RuleRouter::OK()
 {
-  if (!odd_search()) cout << "can't solve" << endl;
-
+  if(!odd_search())
+    return false ;
   Board* rst = new Board(N, M, K);
-  for (int i = 1; i <= DN; ++i)
-    for (int j = 1; j <= DM; ++j)
-      rst->table[i][j] = m_map[i - 1][j - 1].direct;
-
-  return rst;
+  bool ok = rotate(rst);
+  delete rst;
+  return ok;
 }
 
+bool RuleRouter::rotate(Board* rst)
+{
+  int direct = 0;
+  for (int i = 1; i <= (N / 2) * (K + 1); ++i)
+    for (int j = Start(i); j <= End(i); ++j)
+    {
+      direct = m_map[i - 1][j - 1].direct ;
+      if(!direct)continue ;
+      if(rst->table[i][j] || rst->table[j][DN - i + 1] || rst->table[DN - i + 1][DM - j + 1] || rst->table[DM - j + 1][i])
+        return false;
+      rst->table[i][j] = direct;
+      rst->table[j][DN - i + 1] = turn(direct);
+      rst->table[DN - i + 1][DM - j + 1] = turn(direct);
+      rst->table[DM - j + 1][i] = turn(direct);
+    }
+  return true;
+}
+
+int RuleRouter::Start(int i)
+{
+  int j = 1;
+  while(!m_map[i-1][j-1].direct)j++;
+  return j;
+
+}
+
+int RuleRouter::End(int i)
+{
+  int j = DM;
+  while(!m_map[i-1][j-1].direct)j--;
+  return j;
+}
+
+Board* RuleRouter::route()
+{
+  if(N % 2)
+  {
+    if(!odd_search())
+    {
+      cout << "can't solve" << endl;
+      return NULL;
+    }
+  }
+  else
+  {
+    if (!even_search())
+    {
+      cout << "can't solve" << endl;
+      return NULL;
+    }
+  }
+
+
+  flow *= 4;
+  cost *= 4;
+
+
+  Board* rst = new Board(N, M, K);
+  queue<int> q;
+  if(N % 2)
+  {
+    int i = DN / 2 + 1, j = DM / 2 + 1;
+    int dir = 0, ni = 0, nj = 0, overcost = 0 ;
+    while (i > 0 && i <= DN && j > 0 && j <= DM)
+    {
+      dir = m_map[i - 1][j - 1].direct;
+      ni = i + Board::dy(dir);
+      nj = j + Board::dx(dir);
+      q.push(dir);
+      m_map[i - 1][j - 1].direct = 0 ;
+      overcost++;
+      i = ni;
+      j = nj;
+    }
+    flow -= 3;
+    cost -= 3 * overcost;
+  }
+  rotate(rst);
+  if(N % 2)
+  {
+    int i = DN / 2 + 1, j = DM / 2 + 1 ;
+    int dir;
+    while(!q.empty())
+    {
+      dir = q.front();
+      q.pop();
+      rst->table[i][j] = dir;
+      i += Board::dy(dir);
+      j += Board::dx(dir);
+    }
+  }
+  return rst;
+}
 bool RuleRouter::even_search()
 {
   int div_k = K / 2 + 1;
@@ -45,7 +136,6 @@ bool RuleRouter::even_search()
       search_point((i + 1) * (K + 1) - 1, (j + 1) * (K + 1) - 1, Board::UP, Board::LEFT, Board::DOWN);
 
   div_k = K - div_k;
-    cout << div_k << endl;
   for (int k = 0; k <= middle_n - 1 - div_k; k++)
     search_point((k + 1) * (K + 1) - 1, (middle_n + 2) * (K + 1) -1, Board::UP, Board::RIGHT, Board::DOWN);
   for (int k = middle_n - 1; k > middle_n - 1 - div_k; k--)
