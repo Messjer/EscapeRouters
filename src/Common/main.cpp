@@ -10,11 +10,12 @@ using namespace std;
 int main() {
     // int m, n;
     // cin >>m >>n;
-    for (int m = 5; m <= 70; m += 5) {
+    for (int m = 10; m <= 30; m += 5) {
         Timer timer(m, m);
         if (m <= 60)
             timer.timedTest(Solver::NF);
         timer.timedTest(Solver::DC);
+        timer.timedTest(Solver::RU);
     }
 
     return 0;

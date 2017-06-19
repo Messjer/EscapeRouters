@@ -22,8 +22,13 @@ void RuleRouter::set(int n, int m, int k)
 
 bool RuleRouter::OK()
 {
-  if(!odd_search())
-    return false ;
+  if(N % 2) {
+      if (!odd_search())
+          return false;
+  } else {
+      if (!even_search())
+          return false;
+  }
   Board* rst = new Board(N, M, K);
   bool ok = rotate(rst);
   delete rst;
@@ -177,6 +182,9 @@ void RuleRouter::reset()
 
 bool RuleRouter::search_point(int x, int y, int Dir1, int Dir2,int Dir3) {
   if (m_map[x][y].status == VISITED) return false;
+    //if (K == 4 && x == 24) {
+    //    cout << "FDSJFKLDSJ" << endl;
+    //}
   int X = (x + 1) / (K + 1) - 1;
   int Y = (y + 1) / (K + 1) - 1;
   if (Dir2 == Board::LEFT && X > Y) return false;
