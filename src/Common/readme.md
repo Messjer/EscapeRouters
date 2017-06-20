@@ -2,7 +2,7 @@
 Common interface and objects are kept in this directory.
 ## Entrance function
 main.cpp contains the entrance funciton.
-## Visualizer
-Visualizer is kept here.
-
-To run Visualizer, run "java -jar Drawer.jar" in terminal.
+## Solver
+This class uses Routers to solve the problem.
+## Timer
+This class not only solves problem, but also store output in ../../testcase/("RouterType"). Be sure the directory exists.
