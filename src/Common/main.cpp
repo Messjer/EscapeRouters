@@ -8,15 +8,15 @@
 using namespace std;
 
 int main() {
-    // int m, n;
-    // cin >>m >>n;
-    for (int m = 10; m <= 30; m += 5) {
-        Timer timer(m, m);
-        if (m <= 60)
-            timer.timedTest(Solver::NF);
-        timer.timedTest(Solver::DC);
+    cout <<"Please enter dimension (m x n) ..." <<endl;
+    cout <<"Default option is to use Rule Router for m = n, and NetworkFlow Router for m != n" <<endl;
+    cout <<"... "
+    int m, n;
+    cin >>m >>n;
+    Timer timer(m, n);
+    if (m != n)
+        timer.timedTest(Solver::NF);
+    else
         timer.timedTest(Solver::RU);
-    }
-
     return 0;
 }
