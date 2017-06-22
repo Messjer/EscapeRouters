@@ -10,7 +10,7 @@ using namespace std;
 int main() {
     cout <<"Please enter dimension (m x n) ..." <<endl;
     cout <<"Default option is to use Rule Router for m = n, and NetworkFlow Router for m != n" <<endl;
-    cout <<"... "
+    cout <<"... ";
     int m, n;
     cin >>m >>n;
     Timer timer(m, n);
