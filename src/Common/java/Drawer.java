@@ -50,7 +50,7 @@ public class Drawer {
         // half width of the terminals (square)
         static int hw = 5;
 
-        static int size, lineGap;
+        static double size, lineGap;
 
         static int myScale = 1;
 
@@ -70,20 +70,20 @@ public class Drawer {
             g.setColor(Color.LIGHT_GRAY);
             for (int i = 0; i <= M; i++)
                 for (int k = 0; k <= K; k++)
-                    g.drawLine(i * size + lineGap * k, 0,
-                            i * size + lineGap * k, (N + 1) * size);
-            g.drawLine(M * size + lineGap * (K + 1), 0,
-                    M * size + lineGap * (K + 1), (N + 1) * size);
+                    g.drawLine((int) (i * size + lineGap * k), 0,
+                            (int) (i * size + lineGap * k), (int) ((N + 1) * size));
+            g.drawLine((int) (M * size + lineGap * (K + 1)), 0,
+                    (int) (M * size + lineGap * (K + 1)), (int) ((N + 1) * size));
         }
 
         private void drawHorizontals(Graphics g) {
             g.setColor(Color.LIGHT_GRAY);
             for (int i = 0; i <= N; i++)
                 for (int k = 0; k <= K; k++)
-                    g.drawLine(0, i * size + lineGap * k,
-                            (M + 1) * size, i * size + lineGap * k);
-            g.drawLine(0, N * size + lineGap * (K + 1),
-                    (M + 1) * size, N * size + lineGap * (K + 1));
+                    g.drawLine(0, (int) (i * size + lineGap * k),
+                            (int) ((M + 1) * size), (int) (i * size + lineGap * k));
+            g.drawLine(0, (int) (N * size + lineGap * (K + 1)),
+                    (int) ((M + 1) * size), (int) (N * size + lineGap * (K + 1)));
         }
 
         private void drawTerminals(Graphics g) {
@@ -91,30 +91,30 @@ public class Drawer {
             for (int i = 1; i <= N; i++)
                 for (int j = 1; j <= M; j++) {
                     g.setColor(Color.BLACK);
-                    drawSquareAt(g, j * size, i * size);
+                    drawSquareAt(g, (int) (j * size), (int) (i * size));
                 }
 
             // draw outer terminals
             for (int i = 0; i <= M; i++)
                 for (int k = 0; k <= K; k++) {
                     if (i + k == 0) continue;
-                    drawCircleAt(g, i * size + lineGap * k, 0);
-                    drawCircleAt(g, i * size + lineGap * k, (N + 1) * size);
+                    drawCircleAt(g, (int) (i * size + lineGap * k), 0);
+                    drawCircleAt(g, (int) (i * size + lineGap * k), (int) ((N + 1) * size));
                 }
 
             for (int i = 0; i <= N; i++)
                 for (int k = 0; k <= K; k++) {
                     if (i + k == 0) continue;
-                    drawCircleAt(g, 0, i * size + lineGap * k);
-                    drawCircleAt(g, (M + 1) * size, i * size + lineGap * k);
+                    drawCircleAt(g, 0, (int) (i * size + lineGap * k));
+                    drawCircleAt(g, (int) ((M + 1) * size), (int) (i * size + lineGap * k));
                 }
         }
 
         private void drawEdgeAt(Graphics2D g, int i, int j) {
             g.setColor(new Color(0, 100, 0));
-            int Corx = size * ((j + 1) / (K + 1)) + lineGap * ((j + 1) % (K + 1));
-            int Cory = size * ((i + 1) / (K + 1)) + lineGap * ((i + 1) % (K + 1));
-            g.drawLine(Corx, Cory, Corx + lineGap * dx[table[i][j]], Cory + lineGap * dy[table[i][j]]);
+            double Corx = size * ((j + 1) / (K + 1)) + lineGap * ((j + 1) % (K + 1));
+            double Cory = size * ((i + 1) / (K + 1)) + lineGap * ((i + 1) % (K + 1));
+            g.drawLine((int) Corx, (int) Cory, (int) (Corx + lineGap * dx[table[i][j]]), (int) (Cory + lineGap * dy[table[i][j]]));
         }
 
         private void drawRoutingEdges(Graphics g) {
@@ -176,7 +176,7 @@ public class Drawer {
                     canvas.x -= e.getX() / canvas.myScale;
                     canvas.y -= e.getY() / canvas.myScale;
                     canvas.myScale += 1;
-                    System.out.println("I am clicked at this point " + canvas.x + " , " + canvas.y);
+                    // System.out.println("I am clicked at this point " + canvas.x + " , " + canvas.y);
                 } else {
                     canvas.myScale = 1;
                     canvas.x = 30;
